@@ -2,7 +2,7 @@ import axios from "axios";
 
 console.log("VITE_API_URL =", process.env.VITE_API_URL);
 
-const api = axios.create({ baseURL: process.env.VITE_API_URL });
+const api = axios.create({ baseURL: "https://oceon.onrender.com/api" });
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("oceon_token");
