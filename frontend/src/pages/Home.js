@@ -37,7 +37,7 @@ export default function Home() {
       <section className="hero">
         <div className="hero-left">
           <span className="location-badge">
-            📍 Currently Serving Gurugram Only
+            📍 Currently Serving Gurugram Only ( 10 - 30 Minutes )
           </span>
 
           <h1>
@@ -81,7 +81,7 @@ export default function Home() {
 
             <div>
               <h2>Same Day</h2>
-              <span>Delivery</span>
+              <span>Delivery with in 10 - 30 Minutes</span>
             </div>
           </div>
         </div>
@@ -234,8 +234,8 @@ export default function Home() {
               src="https://images.unsplash.com/photo-1603048297172-c92544798d5a"
               alt="Spices"
             />
-            <h3>Authentic Spices</h3>
-            <p>Rich aroma and authentic Indian flavors.</p>
+            <h3>Fresh Meats</h3>
+            <p>High-quality meats for delicious meals.</p>
           </div>
 
           <div className="product-card">
@@ -243,8 +243,8 @@ export default function Home() {
               src="https://images.unsplash.com/photo-1573246123716-6b1782bfc499"
               alt="Flour"
             />
-            <h3>Fresh Atta</h3>
-            <p>Stone-ground wheat flour for healthier meals.</p>
+            <h3>Fresh fruits</h3>
+            <p>Organic and seasonal fruits for a healthy lifestyle.</p>
           </div>
         </div>
       </section>
