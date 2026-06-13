@@ -3,53 +3,54 @@ import "../css/Home.css";
 
 export default function Home() {
   const whatsappLink =
-    "https://wa.me/919205968389?text=Hi%20OCEON,%20I%20am%20interested%20in%20your%20products.%20Please%20share%20more%20details.";
+    "https://wa.me/919205968389?text=Hi%20OCEON,%20I%20want%20to%20order%20grocery%20products.";
 
   return (
-    <div className="home-page">
-      {/* ================= NAVBAR ================= */}
+    <div className="home">
+      {/* Navbar */}
 
-      <header className="home-navbar">
-        <div className="brand">
-          <div className="brand-logo">O</div>
-          <div>
-            <h2>OCEON</h2>
-            <span>Premium Household Products</span>
-          </div>
+      <header className="navbar">
+        <div className="logo">
+          <span className="logo-circle">O</span>
+          <span>OCEON</span>
         </div>
 
         <nav>
-          <a href="#products">Products</a>
-          <a href="#about">About</a>
+          <a href="#categories">Categories</a>
+          <a href="#why">Why Us</a>
+          <a href="#delivery">Delivery</a>
           <a href="#contact">Contact</a>
-
-          <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn-primary"
-          >
-            Order on WhatsApp
-          </a>
         </nav>
+
+        <a
+          href={whatsappLink}
+          target="_blank"
+          rel="noreferrer"
+          className="nav-btn"
+        >
+          Order Now
+        </a>
       </header>
 
-      {/* ================= HERO ================= */}
+      {/* Hero */}
 
-      <section className="hero-section">
+      <section className="hero">
         <div className="hero-left">
-          <span className="badge badge-blue">Trusted Across India 🇮🇳</span>
+          <span className="location-badge">
+            📍 Currently Serving Gurugram Only
+          </span>
 
           <h1>
-            Premium Grocery &
+            Fresh Grocery Products
             <br />
-            Household Products
+            Delivered With
+            <span> Quality & Trust</span>
           </h1>
 
           <p>
-            Discover high-quality household essentials designed for everyday
-            use. OCEON offers reliable products with affordable pricing and
-            quick delivery for homes, shops, offices, and businesses.
+            OCEON brings premium grocery essentials including rice, atta,
+            pulses, spices, oils, snacks and daily household products directly
+            to your doorstep in Gurugram.
           </p>
 
           <div className="hero-buttons">
@@ -57,190 +58,287 @@ export default function Home() {
               href={whatsappLink}
               target="_blank"
               rel="noreferrer"
-              className="btn btn-primary btn-lg"
+              className="primary-btn"
             >
-              🟢 Buy Now
+              Order on WhatsApp
             </a>
 
-            <a href="tel:+919205968389" className="btn btn-outline btn-lg">
-              📞 Call Now
+            <a href="tel:+919205968389" className="secondary-btn">
+              Call Now
             </a>
+          </div>
+
+          <div className="hero-stats">
+            <div>
+              <h2>1000+</h2>
+              <span>Happy Customers</span>
+            </div>
+
+            <div>
+              <h2>50+</h2>
+              <span>Products</span>
+            </div>
+
+            <div>
+              <h2>Same Day</h2>
+              <span>Delivery</span>
+            </div>
           </div>
         </div>
 
         <div className="hero-right">
-          <div className="stat-card">
-            <div className="stat-label">Premium Quality</div>
-            <div className="stat-value">100%</div>
-            <div className="stat-sub">Carefully selected products</div>
+          <img
+            src="https://images.unsplash.com/photo-1542838132-92c53300491e"
+            alt="Fresh Grocery"
+          />
+        </div>
+      </section>
+
+      {/* Categories */}
+
+      <section id="categories" className="categories">
+        <h2>Our Categories</h2>
+
+        <p>Everything you need for your kitchen in one place.</p>
+
+        <div className="category-grid">
+          <div className="category-card">
+            🍚
+            <h3>Rice</h3>
           </div>
 
-          <div className="stat-card">
-            <div className="stat-label">Fast Support</div>
-            <div className="stat-value">24×7</div>
-            <div className="stat-sub">WhatsApp assistance</div>
+          <div className="category-card">
+            🌾
+            <h3>Atta</h3>
           </div>
 
-          <div className="stat-card">
-            <div className="stat-label">Affordable Pricing</div>
-            <div className="stat-value">₹₹</div>
-            <div className="stat-sub">Best value guaranteed</div>
+          <div className="category-card">
+            🥜
+            <h3>Pulses</h3>
           </div>
 
-          <div className="stat-card">
-            <div className="stat-label">Customer Focus</div>
-            <div className="stat-value">❤</div>
-            <div className="stat-sub">Satisfaction comes first</div>
+          <div className="category-card">
+            🌶️
+            <h3>Spices</h3>
+          </div>
+
+          <div className="category-card">
+            🧴
+            <h3>Cooking Oils</h3>
+          </div>
+
+          <div className="category-card">
+            🍪
+            <h3>Snacks</h3>
+          </div>
+
+          <div className="category-card">
+            ☕<h3>Tea & Coffee</h3>
+          </div>
+
+          <div className="category-card">
+            🛒
+            <h3>Daily Essentials</h3>
           </div>
         </div>
       </section>
 
-      {/* ================= PRODUCTS ================= */}
+      {/* Why Choose OCEON */}
 
-      <section className="section" id="products">
+      <section id="why" className="why-section">
         <div className="section-header">
-          <span className="badge badge-green">Our Products</span>
-
-          <h2>Everything You Need For A Cleaner Home</h2>
-
+          <span>WHY CHOOSE US</span>
+          <h2>Experience Premium Grocery Shopping</h2>
           <p>
-            We provide quality household and cleaning products suitable for
-            homes and businesses.
+            We don't just deliver groceries. We deliver freshness, quality and
+            trust to every doorstep in Gurugram.
           </p>
         </div>
 
-        <div className="features-grid">
-          <div className="card">
-            <h3>🧴 Liquid Cleaners</h3>
-            <p>Powerful cleaning solutions for daily household use.</p>
-          </div>
-
-          <div className="card">
-            <h3>🧼 Hand Wash</h3>
-            <p>Gentle yet effective hygiene products for your family.</p>
-          </div>
-
-          <div className="card">
-            <h3>🧽 Dish Wash</h3>
-            <p>Tough on grease while being safe for utensils.</p>
-          </div>
-
-          <div className="card">
-            <h3>🏠 Floor Cleaners</h3>
-            <p>Keep your home fresh, hygienic, and sparkling clean.</p>
-          </div>
-
-          <div className="card">
-            <h3>🧺 Laundry Solutions</h3>
-            <p>Effective products for fresh and spotless clothes.</p>
-          </div>
-
-          <div className="card">
-            <h3>📦 Bulk Orders</h3>
-            <p>Contact us for wholesale pricing and larger quantities.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= WHY OCEON ================= */}
-
-      <section className="section">
-        <div className="section-header">
-          <span className="badge badge-purple">Why Choose OCEON</span>
-
-          <h2>Trusted By Customers</h2>
-        </div>
-
-        <div className="features-grid">
-          <div className="card">
-            <h3>✅ Premium Quality</h3>
+        <div className="why-grid">
+          <div className="why-card">
+            <div className="why-icon">🌿</div>
+            <h3>Fresh Products</h3>
             <p>
-              High-quality products manufactured to maintain excellent
-              standards.
+              Every product is carefully selected to maintain premium quality.
             </p>
           </div>
 
-          <div className="card">
-            <h3>🚚 Fast Delivery</h3>
-            <p>Timely dispatch and reliable delivery support.</p>
+          <div className="why-card">
+            <div className="why-icon">🚚</div>
+            <h3>Fast Delivery</h3>
+            <p>Same-day delivery available across Gurugram.</p>
           </div>
 
-          <div className="card">
-            <h3>💰 Affordable Prices</h3>
-            <p>Competitive pricing without compromising quality.</p>
+          <div className="why-card">
+            <div className="why-icon">💰</div>
+            <h3>Best Pricing</h3>
+            <p>Competitive pricing without compromising on quality.</p>
           </div>
 
-          <div className="card">
-            <h3>🤝 Trusted Service</h3>
-            <p>Friendly customer support from inquiry to delivery.</p>
+          <div className="why-card">
+            <div className="why-icon">🤝</div>
+            <h3>Trusted Service</h3>
+            <p>Hundreds of satisfied customers trust OCEON every day.</p>
           </div>
         </div>
       </section>
 
-      {/* ================= CTA ================= */}
+      {/* Delivery Banner */}
+
+      <section id="delivery" className="delivery-banner">
+        <div className="delivery-content">
+          <div>
+            <span className="delivery-tag">📍 Gurugram Exclusive</span>
+
+            <h2>Currently Delivering Only in Gurugram</h2>
+
+            <p>
+              To ensure quick deliveries and exceptional service, OCEON
+              currently serves customers across Gurugram. Expansion to nearby
+              cities is coming soon.
+            </p>
+          </div>
+
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noreferrer"
+            className="delivery-btn"
+          >
+            Check Availability
+          </a>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+
+      <section className="featured-products">
+        <div className="section-header">
+          <span>POPULAR PRODUCTS</span>
+          <h2>Kitchen Essentials You'll Love</h2>
+        </div>
+
+        <div className="product-grid">
+          <div className="product-card">
+            <img
+              src="https://images.unsplash.com/photo-1586201375761-83865001e31c"
+              alt="Rice"
+            />
+            <h3>Premium Rice</h3>
+            <p>Finest quality grains for everyday cooking.</p>
+          </div>
+
+          <div className="product-card">
+            <img
+              src="https://images.unsplash.com/photo-1603048297172-c92544798d5a"
+              alt="Spices"
+            />
+            <h3>Authentic Spices</h3>
+            <p>Rich aroma and authentic Indian flavors.</p>
+          </div>
+
+          <div className="product-card">
+            <img
+              src="https://images.unsplash.com/photo-1573246123716-6b1782bfc499"
+              alt="Flour"
+            />
+            <h3>Fresh Atta</h3>
+            <p>Stone-ground wheat flour for healthier meals.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Statistics */}
+
+      <section className="stats-section">
+        <div className="stat-box">
+          <h2>1000+</h2>
+          <span>Happy Families</span>
+        </div>
+
+        <div className="stat-box">
+          <h2>50+</h2>
+          <span>Premium Products</span>
+        </div>
+
+        <div className="stat-box">
+          <h2>100%</h2>
+          <span>Quality Checked</span>
+        </div>
+
+        <div className="stat-box">
+          <h2>24×7</h2>
+          <span>WhatsApp Support</span>
+        </div>
+      </section>
+
+      {/* Customer Reviews */}
+
+      <section className="testimonial-section">
+        <div className="section-header">
+          <span>TESTIMONIALS</span>
+          <h2>What Customers Say</h2>
+        </div>
+
+        <div className="testimonial-grid">
+          <div className="testimonial-card">
+            ⭐⭐⭐⭐⭐
+            <p>
+              "Fresh products, quick delivery and excellent customer service."
+            </p>
+            <h4>Rahul Sharma</h4>
+          </div>
+
+          <div className="testimonial-card">
+            ⭐⭐⭐⭐⭐
+            <p>"Ordering through WhatsApp is so simple and convenient."</p>
+            <h4>Priya Verma</h4>
+          </div>
+
+          <div className="testimonial-card">
+            ⭐⭐⭐⭐⭐
+            <p>"The quality of rice and spices is outstanding."</p>
+            <h4>Aman Gupta</h4>
+          </div>
+        </div>
+      </section>
+
+      {/* Call To Action */}
 
       <section className="cta-section">
-        <span className="badge badge-orange">Ready to Order?</span>
-
-        <h2>Let's Connect on WhatsApp</h2>
+        <h2>Need Groceries Today?</h2>
 
         <p>
-          Have questions or want to place an order? Contact our team directly
-          and receive quick assistance.
+          Order directly on WhatsApp and get instant assistance from our team.
         </p>
 
         <a
           href={whatsappLink}
           target="_blank"
           rel="noreferrer"
-          className="btn btn-primary btn-lg"
+          className="cta-btn"
         >
-          💬 Order on WhatsApp
+          🟢 Order on WhatsApp
         </a>
       </section>
 
-      {/* ================= ABOUT ================= */}
+      {/* Footer */}
 
-      <section className="section" id="about">
-        <div className="section-header">
-          <span className="badge badge-blue">About Us</span>
-
-          <h2>About OCEON</h2>
-
-          <p>
-            OCEON is committed to delivering reliable household and cleaning
-            products with exceptional customer service. We believe quality,
-            affordability, and trust should go hand in hand.
-          </p>
-        </div>
-      </section>
-
-      {/* ================= CONTACT ================= */}
-
-      <footer className="footer" id="contact">
-        <div>
-          <h2>OCEON</h2>
-
-          <p>Quality Products • Trusted Service • Fast Delivery</p>
+      <footer id="contact" className="footer">
+        <div className="footer-logo">
+          <span className="logo-circle">O</span>
+          <span>OCEON</span>
         </div>
 
-        <div>
-          <h4>Contact</h4>
+        <p>Premium grocery products delivered with quality and trust.</p>
 
-          <p>📞 +91 9205968389</p>
-
-          <p>💬 WhatsApp Available</p>
-
-          <p>🌐 www.oceon.in</p>
+        <div className="footer-info">
+          <span>📍 Gurugram, Haryana</span>
+          <span>📞 +91 9205968389</span>
         </div>
 
-        <div>
-          <h4>Quick Action</h4>
-
-          <a href={whatsappLink} target="_blank" rel="noreferrer">
-            Order Now →
-          </a>
-        </div>
+        <p className="copyright">© 2025 OCEON. All Rights Reserved.</p>
       </footer>
 
       {/* Floating WhatsApp */}
