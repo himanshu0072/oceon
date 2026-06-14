@@ -1,60 +1,80 @@
-import React, { useState } from 'react';
-import { Outlet, NavLink, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
-import './Layout.css';
+import React, { useState } from "react";
+import { Outlet, NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import "./Layout.css";
 
 // Define which nav items each role can see
 const NAV_CONFIG = {
   admin: [
-    { section: 'Overview',    items: [{ to: '/',         icon: '⬡',  label: 'Dashboard',          exact: true }] },
-    { section: 'Inventory',   items: [
-      { to: '/warehouse',       icon: '🏭', label: 'Warehouse' },
-      { to: '/fc',              icon: '📦', label: 'Fulfillment Center' },
-      { to: '/transfers',       icon: '⇄',  label: 'Transfers' },
-    ]},
-    { section: 'Operations',  items: [
-      { to: '/sales',           icon: '₹',  label: 'Sales' },
-      { to: '/products',        icon: '◈',  label: 'Products' },
-    ]},
-    { section: 'Admin',       items: [
-      { to: '/users',           icon: '👥', label: 'User Management' },
-    ]},
+    {
+      section: "Overview",
+      items: [{ to: "/app", icon: "⬡", label: "Dashboard", exact: true }],
+    },
+    {
+      section: "Inventory",
+      items: [
+        { to: "/app/warehouse", icon: "🏭", label: "Warehouse" },
+        { to: "/app/fc", icon: "📦", label: "Fulfillment Center" },
+        { to: "/app/transfers", icon: "⇄", label: "Transfers" },
+      ],
+    },
+    {
+      section: "Operations",
+      items: [
+        { to: "/app/sales", icon: "₹", label: "Sales" },
+        { to: "/app/products", icon: "◈", label: "Products" },
+      ],
+    },
+    {
+      section: "Admin",
+      items: [{ to: "/app/users", icon: "👥", label: "User Management" }],
+    },
   ],
   warehouse_manager: [
-    { section: 'Inventory',   items: [
-      { to: '/',                icon: '🏭', label: 'Warehouse',            exact: true },
-      { to: '/transfers',       icon: '⇄',  label: 'Transfers' },
-    ]},
-    { section: 'View Only',   items: [
-      { to: '/fc',              icon: '📦', label: 'FC Stock' },
-    ]},
+    {
+      section: "Inventory",
+      items: [
+        { to: "/", icon: "🏭", label: "Warehouse", exact: true },
+        { to: "/app/transfers", icon: "⇄", label: "Transfers" },
+      ],
+    },
+    {
+      section: "View Only",
+      items: [{ to: "/fc", icon: "📦", label: "FC Stock" }],
+    },
   ],
   fc_manager: [
-    { section: 'FC Operations', items: [
-      { to: '/',                icon: '📦', label: 'FC Inventory',         exact: true },
-      { to: '/transfers',       icon: '⇄',  label: 'Request Transfer' },
-      { to: '/sales',           icon: '₹',  label: 'Sales' },
-    ]},
+    {
+      section: "FC Operations",
+      items: [
+        { to: "/app", icon: "📦", label: "FC Inventory", exact: true },
+        { to: "/app/transfers", icon: "⇄", label: "Request Transfer" },
+        { to: "/app/sales", icon: "₹", label: "Sales" },
+      ],
+    },
   ],
   salesperson: [
-    { section: 'Sales',       items: [
-      { to: '/',                icon: '🛒', label: 'Record Sale',          exact: true },
-      { to: '/sales',           icon: '₹',  label: 'Sales History' },
-    ]},
+    {
+      section: "Sales",
+      items: [
+        { to: "/app", icon: "🛒", label: "Record Sale", exact: true },
+        { to: "/app/sales", icon: "₹", label: "Sales History" },
+      ],
+    },
   ],
 };
 
 const ROLE_COLORS = {
-  admin:             '#00d4ff',
-  warehouse_manager: '#a78bfa',
-  fc_manager:        '#00e676',
-  salesperson:       '#ffab40',
+  admin: "#00d4ff",
+  warehouse_manager: "#a78bfa",
+  fc_manager: "#00e676",
+  salesperson: "#ffab40",
 };
 const ROLE_LABELS = {
-  admin:             'Admin',
-  warehouse_manager: 'Warehouse Manager',
-  fc_manager:        'FC Manager',
-  salesperson:       'Salesperson',
+  admin: "Admin",
+  warehouse_manager: "Warehouse Manager",
+  fc_manager: "FC Manager",
+  salesperson: "Salesperson",
 };
 
 export default function Layout() {
@@ -62,14 +82,17 @@ export default function Layout() {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const handleLogout = () => { logout(); navigate('/login'); };
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
   const navGroups = NAV_CONFIG[user?.role] || [];
-  const roleColor = ROLE_COLORS[user?.role] || 'var(--accent)';
+  const roleColor = ROLE_COLORS[user?.role] || "var(--accent)";
   const roleLabel = ROLE_LABELS[user?.role] || user?.role;
 
   return (
     <div className="layout">
-      <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
+      <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
         <div className="sidebar-logo">
           <div className="logo-mark">O</div>
           <div>
@@ -79,21 +102,23 @@ export default function Layout() {
         </div>
 
         {/* Role badge in sidebar */}
-        <div className="sidebar-role" style={{ '--rc': roleColor }}>
+        <div className="sidebar-role" style={{ "--rc": roleColor }}>
           <span className="sidebar-role-dot" />
           {roleLabel}
         </div>
 
         <nav className="sidebar-nav">
-          {navGroups.map(group => (
+          {navGroups.map((group) => (
             <div key={group.section}>
               <div className="nav-section-label">{group.section}</div>
-              {group.items.map(item => (
+              {group.items.map((item) => (
                 <NavLink
                   key={item.to}
                   to={item.to}
                   end={item.exact}
-                  className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
+                  className={({ isActive }) =>
+                    `nav-item ${isActive ? "active" : ""}`
+                  }
                   onClick={() => setSidebarOpen(false)}
                 >
                   <span className="nav-icon">{item.icon}</span>
@@ -106,24 +131,43 @@ export default function Layout() {
 
         <div className="sidebar-footer">
           <div className="user-info">
-            <div className="user-avatar" style={{ background: `linear-gradient(135deg, ${roleColor}, #0070ff)` }}>
+            <div
+              className="user-avatar"
+              style={{
+                background: `linear-gradient(135deg, ${roleColor}, #0070ff)`,
+              }}
+            >
               {user?.name?.[0]?.toUpperCase()}
             </div>
             <div>
               <div className="user-name">{user?.name}</div>
-              <div className="user-role" style={{ color: roleColor }}>{roleLabel}</div>
+              <div className="user-role" style={{ color: roleColor }}>
+                {roleLabel}
+              </div>
             </div>
           </div>
-          <button className="logout-btn" onClick={handleLogout} title="Logout">⏻</button>
+          <button className="logout-btn" onClick={handleLogout} title="Logout">
+            ⏻
+          </button>
         </div>
       </aside>
 
       <div className="layout-main">
         <header className="topbar">
-          <button className="menu-btn" onClick={() => setSidebarOpen(s => !s)}>☰</button>
+          <button
+            className="menu-btn"
+            onClick={() => setSidebarOpen((s) => !s)}
+          >
+            ☰
+          </button>
           <div className="topbar-right">
             <div className="topbar-time">
-              {new Date().toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })}
+              {new Date().toLocaleDateString("en-IN", {
+                weekday: "short",
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })}
             </div>
           </div>
         </header>
@@ -132,7 +176,12 @@ export default function Layout() {
         </main>
       </div>
 
-      {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
+      {sidebarOpen && (
+        <div
+          className="sidebar-overlay"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
     </div>
   );
 }
