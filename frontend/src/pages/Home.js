@@ -4,215 +4,182 @@ export default function Home() {
   const whatsapp =
     "https://wa.me/919205968389?text=Hi%20OCEON,%20I%20want%20to%20order%20groceries.";
 
+  const products = [
+    {
+      emoji: "🌾",
+      title: "Premium Rice",
+      desc: "Finest Basmati from trusted farms.",
+      image: "/ourproducts/rice2.png",
+    },
+    {
+      emoji: "🫓",
+      title: "Fresh Atta",
+      desc: "Stone-ground for soft, healthy rotis.",
+      image: "/ourproducts/atta.png",
+    },
+    {
+      emoji: "🫘",
+      title: "Pulses & Dal",
+      desc: "Protein-rich, guaranteed fresh.",
+      image: "/ourproducts/pulses.png",
+    },
+    {
+      emoji: "🌶️",
+      title: "Indian Spices",
+      desc: "Authentic masalas, rich in aroma.",
+      image: "/ourproducts/spices.png",
+    },
+    {
+      emoji: "🫙",
+      title: "Cooking Oils",
+      desc: "Refined and cold-pressed options.",
+      image: "/ourproducts/cookingoils.png",
+    },
+    {
+      emoji: "🥜",
+      title: "Dry Fruits",
+      desc: "Almonds, cashews, raisins & more.",
+      image: "/ourproducts/dryfruites.png",
+    },
+    {
+      emoji: "🍪",
+      title: "Snacks",
+      desc: "Biscuits, namkeen & ready-to-eat.",
+      image: "/ourproducts/snacks.png",
+    },
+    {
+      emoji: "🧂",
+      title: "Daily Essentials",
+      desc: "Sugar, salt, tea and every staple.",
+      image: "/ourproducts/daily.png",
+    },
+  ];
+
   return (
     <div className="home">
-      {/* Navbar */}
-
+      {/* ── NAVBAR ── */}
       <nav className="navbar">
         <div className="logoArea">
-          <img src="/logo.png" alt="OCEON" className="logo" />
-          <div>
-            <span id="logoTitle">Premium Grocery Store</span>
+          <div className="logoBox">
+            <img src="/logo.png" alt="OCEON" />
+          </div>
+          <div className="logoText">
+            <span className="logoSub">Premium Grocery Store</span>
           </div>
         </div>
-
         <div className="navLinks">
-          <a href="#categories">Categories</a>
-
+          <a href="#categories">Products</a>
           <a href="#about">About</a>
-
           <a href="#faq">FAQ</a>
-
           <a href="#contact">Contact</a>
-
           <a
             href={whatsapp}
-            className="whatsappBtn"
+            className="navCta"
             target="_blank"
             rel="noreferrer"
           >
-            Order Now
+            Order now ↗
           </a>
         </div>
+        <a
+          href={whatsapp}
+          className="navCtaMobile"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Order ↗
+        </a>
       </nav>
 
-      {/* Hero */}
-
+      {/* ── HERO ── */}
       <section className="hero">
-        <div className="heroLeft">
-          <div className="heroBadge">Serving Gurugram Only</div>
-
-          <h1 className="heroTitle">
-            Fresh Groceries
-            <br />
-            Delivered To
-            <span> Your Doorstep.</span>
-          </h1>
-
-          <p>
-            Premium quality rice, atta, pulses, spices, cooking oils, snacks and
-            daily essentials with simple WhatsApp ordering.
-          </p>
-
-          <div className="heroButtons">
-            <a
-              href={whatsapp}
-              target="_blank"
-              rel="noreferrer"
-              className="primaryBtn"
-            >
-              Buy on WhatsApp
-            </a>
-
-            <a href="#categories" className="secondaryBtn">
-              Explore Products
-            </a>
+        <div className="heroGlow" />
+        <div className="heroInner">
+          <div className="heroLeft">
+            <div className="heroPill">
+              <span className="heroPillDot" />
+              Serving Gurugram
+            </div>
+            <h1 className="heroTitle">
+              Fresh groceries,
+              <br />
+              <em>delivered fast.</em>
+            </h1>
+            <p className="heroDesc">
+              Premium rice, atta, pulses, spices and daily essentials — ordered
+              in seconds on WhatsApp.
+            </p>
+            <div className="heroActions">
+              <a
+                href={whatsapp}
+                className="btnPrimary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Order on WhatsApp ↗
+              </a>
+              <a href="#categories" className="btnGhost">
+                Browse products →
+              </a>
+            </div>
+            <div className="heroTrust">
+              <span>
+                <span className="trustCheck">✓</span> Quality checked
+              </span>
+              <span>
+                <span className="trustCheck">✓</span> Fast delivery
+              </span>
+              <span>
+                <span className="trustCheck">✓</span> Best prices
+              </span>
+            </div>
           </div>
-
-          <div className="trust">
-            <div>✓ Quality Checked</div>
-
-            <div>✓ Fast Delivery</div>
-
-            <div>✓ Best Prices</div>
-          </div>
-        </div>
-
-        <div className="heroRight">
-          <div className="floatingCard">
-            <img src="/hero-grocery.png" alt="Groceries" />
+          <div className="heroRight">
+            <div className="heroImageWrap">
+              <img src="/hero-grocery.png" alt="Fresh groceries" />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ================= CATEGORIES ================= */}
+      {/* ── STATS BAND ── */}
+      <div className="statsBand">
+        {[
+          { num: "500+", label: "Happy customers" },
+          { num: "50+", label: "Premium products" },
+          { num: "100%", label: "Quality checked" },
+          { num: "24×7", label: "WhatsApp support" },
+        ].map((s, i) => (
+          <div className="statItem" key={i}>
+            <span className="statNum">{s.num}</span>
+            <span className="statLabel">{s.label}</span>
+          </div>
+        ))}
+      </div>
 
-      <section className="categories" id="categories">
-        <div className="sectionHeader">
-          <span>OUR PRODUCTS</span>
-
-          <h2 id="categoriesTitle">Everything You Need For Your Kitchen</h2>
-
-          <p>
-            Premium quality grocery products sourced carefully to ensure
-            freshness, taste and value.
-          </p>
+      {/* ── PRODUCTS ── */}
+      <section className="productsSection" id="categories">
+        <div className="sectionHead">
+          <span className="eyebrow">Our products</span>
+          <h2>Everything your kitchen needs</h2>
+          <p>Carefully sourced for freshness, taste and value.</p>
         </div>
-
-        <div className="categoryGrid">
-          {[
-            {
-              image: "/ourproducts/rice2.png",
-              title: "Premium Rice",
-              desc: "Finest quality Basmati and daily cooking rice sourced from trusted farms.",
-            },
-            {
-              image: "/ourproducts/atta.png",
-              title: "Fresh Atta",
-              desc: "Stone-ground wheat flour for soft rotis and healthy meals.",
-            },
-            {
-              image: "/ourproducts/pulses.png",
-              title: "Pulses & Dal",
-              desc: "Protein-rich dals and legumes with guaranteed freshness.",
-            },
-            {
-              image: "/ourproducts/spices.png",
-              title: "Indian Spices",
-              desc: "Authentic masalas packed with rich aroma and flavor.",
-            },
-            {
-              image: "/ourproducts/cookingoils.png",
-              title: "Cooking Oils",
-              desc: "Healthy refined and cold-pressed oils for everyday cooking.",
-            },
-            {
-              image: "/ourproducts/dryfruites.png",
-              title: "Dry Fruits",
-              desc: "Premium almonds, cashews, raisins and nutritious snacks.",
-            },
-            {
-              image: "/ourproducts/snacks.png",
-              title: "Snacks",
-              desc: "Delicious biscuits, namkeen and ready-to-eat products.",
-            },
-            {
-              image: "/ourproducts/daily.png",
-              title: "Daily Essentials",
-              desc: "Sugar, salt, tea, coffee and all household grocery needs.",
-            },
-          ].map((item, index) => (
-            <div className="categoryCard" key={index}>
-              <img
-                src={item.image}
-                alt={item.title}
-                className="categoryImage"
-              />
-
-              <div className="categoryContent">
+        <div className="productGrid">
+          {products.map((item, i) => (
+            <div className="productCard" key={i}>
+              <div className="productCardImg">
+                <img src={item.image} alt={item.title} />
+              </div>
+              <div className="productCardBody">
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>
-
                 <a
                   href="https://wa.me/919205968389?text=Hi%20OCEON,%20I'm%20interested%20in%20your%20products."
                   target="_blank"
                   rel="noreferrer"
                   className="productEnquiry"
                 >
-                  Enquire Now →
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-      {/* ================= FEATURED PRODUCTS ================= */}
-
-      <section className="featuredSection">
-        <div className="sectionHeader">
-          <span>BEST SELLERS</span>
-
-          <h2>Popular Grocery Products</h2>
-
-          <p>
-            Carefully selected products trusted by hundreds of families in
-            Gurugram.
-          </p>
-        </div>
-
-        <div className="featuredGrid">
-          {[
-            {
-              image: "/products/rice.jpeg",
-              title: "Premium Basmati Rice",
-              desc: "Long grain, aromatic & perfect for every occasion.",
-            },
-            {
-              image: "/products/atta.jpg",
-              title: "Whole Wheat Atta",
-              desc: "Freshly milled for soft and healthy rotis.",
-            },
-            {
-              image: "/products/pulses.jpg",
-              title: "Premium Pulses",
-              desc: "Protein-rich dals with exceptional quality.",
-            },
-          ].map((item, index) => (
-            <div className="productCard" key={index}>
-              <img src={item.image} alt={item.title} />
-
-              <div className="productBody">
-                <h3>{item.title}</h3>
-
-                <p>{item.desc}</p>
-
-                <a
-                  href="https://wa.me/919205968389?text=Hi%20OCEON,%20I'm%20interested%20in%20this%20product."
-                  target="_blank"
-                  rel="noreferrer"
-                  className="productBtn"
-                >
-                  Order Now
+                  Enquire →
                 </a>
               </div>
             </div>
@@ -220,226 +187,188 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ================= WHY OCEON ================= */}
-      <hr></hr>
+      {/* ── WHY US ── */}
       <section className="whySection" id="about">
         <div className="whyLeft">
-          <img src="/about-grocery.png" alt="Fresh Grocery" />
-        </div>
-
-        <div className="whyRight">
-          <span className="miniTitle">WHY CHOOSE US</span>
-
-          <h2>Trusted Grocery Partner For Families In Gurugram</h2>
-
+          <span className="eyebrow">Why choose us</span>
+          <h2>
+            Trusted by families
+            <br />
+            across Gurugram
+          </h2>
           <p>
             OCEON focuses on quality, freshness and customer satisfaction. Every
-            product is carefully selected to provide the best shopping
-            experience.
+            product is carefully selected to give you the best grocery
+            experience possible.
           </p>
-
-          <div className="featureGrid">
-            <div>✅ Premium Quality Products</div>
-
-            <div>🚚 Fast Local Delivery</div>
-
-            <div>💰 Affordable Pricing</div>
-
-            <div>📦 Fresh Stock Everyday</div>
-
-            <div>📱 Easy WhatsApp Ordering</div>
-
-            <div>❤️ Trusted Customer Support</div>
+          <div className="whyFeatures">
+            {[
+              ["✅", "Premium quality products"],
+              ["🚚", "Fast local delivery"],
+              ["💰", "Affordable pricing"],
+              ["📦", "Fresh stock every day"],
+              ["📱", "Easy WhatsApp ordering"],
+              ["❤️", "Trusted customer support"],
+            ].map(([icon, text], i) => (
+              <div className="whyFeature" key={i}>
+                <span className="whyIcon">{icon}</span>
+                <span>{text}</span>
+              </div>
+            ))}
           </div>
         </div>
-      </section>
-      <hr></hr>
-
-      {/* ================= STATS ================= */}
-
-      <section className="statsSection">
-        <div className="statCard">
-          <h2>500+</h2>
-
-          <span>Happy Customers</span>
-        </div>
-
-        <div className="statCard">
-          <h2>50+</h2>
-
-          <span>Premium Products</span>
-        </div>
-
-        <div className="statCard">
-          <h2>100%</h2>
-
-          <span>Quality Checked</span>
-        </div>
-
-        <div className="statCard">
-          <h2>24×7</h2>
-
-          <span>WhatsApp Support</span>
+        <div className="whyRight">
+          <img src="/about-grocery.png" alt="Fresh grocery" />
         </div>
       </section>
 
-      {/* ================= TESTIMONIALS ================= */}
-
-      <section className="testimonialSection">
-        <div className="sectionHeader">
-          <span>TESTIMONIALS</span>
-
-          <h2 className="testimonialTitle">What Our Customers Say</h2>
+      {/* ── TESTIMONIALS ── */}
+      <section className="testimonialsSection">
+        <div className="sectionHead">
+          <span className="eyebrow">Testimonials</span>
+          <h2>What our customers say</h2>
         </div>
-
-        <div className="testimonialGrid">
-          <div className="testimonialCard">
-            <div className="stars">★★★★★</div>
-
-            <p>
-              "Amazing quality products and very smooth ordering experience.
-              Delivery was quick too."
-            </p>
-
-            <h4>Rahul Sharma</h4>
-
-            <span>Gurugram</span>
-          </div>
-
-          <div className="testimonialCard">
-            <div className="stars">★★★★★</div>
-
-            <p>
-              "Fresh groceries at affordable prices. OCEON has become our
-              preferred grocery partner."
-            </p>
-
-            <h4>Neha Gupta</h4>
-
-            <span>Gurugram</span>
-          </div>
-
-          <div className="testimonialCard">
-            <div className="stars">★★★★★</div>
-
-            <p>
-              "Loved the WhatsApp ordering process. Super convenient and
-              professional service."
-            </p>
-
-            <h4>Amit Verma</h4>
-
-            <span>Gurugram</span>
-          </div>
+        <div className="testimonialsGrid">
+          {[
+            {
+              quote:
+                "Amazing quality products and very smooth ordering experience. Delivery was quick too.",
+              name: "Rahul Sharma",
+              city: "Gurugram",
+            },
+            {
+              quote:
+                "Fresh groceries at affordable prices. OCEON has become our preferred grocery partner.",
+              name: "Neha Gupta",
+              city: "Gurugram",
+            },
+            {
+              quote:
+                "Loved the WhatsApp ordering process. Super convenient and professional service.",
+              name: "Amit Verma",
+              city: "Gurugram",
+            },
+          ].map((t, i) => (
+            <div className="testimonialCard" key={i}>
+              <div className="stars">★★★★★</div>
+              <p>"{t.quote}"</p>
+              <div className="testimonialAuthor">
+                <div className="authorAvatar">{t.name[0]}</div>
+                <div>
+                  <strong>{t.name}</strong>
+                  <span>{t.city}</span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* ================= FAQ ================= */}
-
+      {/* ── FAQ ── */}
       <section className="faqSection" id="faq">
-        <div className="sectionHeader">
-          <span>FAQ</span>
-
-          <h2 id="faqTitle">Frequently Asked Questions</h2>
+        <div className="sectionHead">
+          <span className="eyebrow">FAQ</span>
+          <h2>Frequently asked questions</h2>
         </div>
-
-        <div className="faqList">
-          <div className="faqItem">
-            <h3>Do you deliver across Gurugram?</h3>
-
-            <p>Yes, OCEON currently serves customers throughout Gurugram.</p>
-          </div>
-
-          <div className="faqItem">
-            <h3>How can I place an order?</h3>
-
-            <p>
-              Simply click on the WhatsApp button and send us your requirements.
-            </p>
-          </div>
-
-          <div className="faqItem">
-            <h3>Do you provide quality assurance?</h3>
-
-            <p>
-              Every product is quality checked before reaching our customers.
-            </p>
-          </div>
-
-          <div className="faqItem">
-            <h3>Can businesses also order from OCEON?</h3>
-
-            <p>Yes, we can cater to bulk and business orders as well.</p>
-          </div>
+        <div className="faqGrid">
+          {[
+            {
+              q: "Do you deliver across Gurugram?",
+              a: "Yes, OCEON currently serves customers throughout Gurugram.",
+            },
+            {
+              q: "How can I place an order?",
+              a: "Simply click the WhatsApp button and send us your requirements.",
+            },
+            {
+              q: "Do you provide quality assurance?",
+              a: "Every product is quality checked before reaching our customers.",
+            },
+            {
+              q: "Can businesses order from OCEON?",
+              a: "Yes, we can cater to bulk and business orders as well.",
+            },
+          ].map((item, i) => (
+            <div className="faqCard" key={i}>
+              <h3>{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* ================= CTA ================= */}
-      <div className="divider">
-        <section className="ctaBanner">
-          <div>
-            <span>READY TO SHOP?</span>
-
-            <h2>Get Premium Grocery Products Delivered To Your Doorstep</h2>
-
+      {/* ── CTA ── */}
+      <section className="ctaSection">
+        <div className="ctaCard">
+          <div className="ctaGlow" />
+          <div className="ctaText">
+            <span className="eyebrow" style={{ color: "#7eb3ff" }}>
+              Ready to shop?
+            </span>
+            <h2>
+              Get premium groceries
+              <br />
+              delivered to your doorstep
+            </h2>
             <p>
-              Fresh products, affordable pricing and quick WhatsApp ordering.
+              Fresh products, affordable pricing, one WhatsApp message away.
             </p>
           </div>
-
           <a
-            href="https://wa.me/919205968389?text=Hi%20OCEON,%20I%20want%20to%20place%20an%20order."
+            href={whatsapp}
             target="_blank"
             rel="noreferrer"
-            className="ctaButton"
+            className="ctaBtn"
           >
             Order on WhatsApp →
           </a>
-        </section>
-      </div>
+        </div>
+      </section>
 
-      {/* ================= FOOTER ================= */}
-
+      {/* ── FOOTER ── */}
       <footer className="footer" id="contact">
         <div className="footerTop">
-          <div>
-            <img src="/logo.png" alt="OCEON" className="footerLogo" />
-
-            <p>
-              Premium Grocery Store serving customers across Gurugram with
-              quality products and reliable service.
-            </p>
+          <div className="footerBrand">
+            <div className="footerLogo">
+              <img src="/logo.png" alt="OCEON" />
+              <p>
+                Premium Grocery Store serving Gurugram with quality products and
+                reliable service.
+              </p>
+            </div>
           </div>
-
-          <div>
-            <h3>Quick Links</h3>
-
+          <div className="footerCol">
+            <h4>Quick links</h4>
             <a href="#">Home</a>
-
-            <a href="#categories">Categories</a>
-
+            <a href="#categories">Products</a>
             <a href="#about">About</a>
-
             <a href="#faq">FAQ</a>
           </div>
-
-          <div>
-            <h3>Contact</h3>
-
+          <div className="footerCol">
+            <h4>Contact</h4>
             <p>📞 +91 9205968389</p>
-
-            <p>📍 Gurugram, Haryana</p>
-
+            <p>
+              <a
+                href="https://maps.app.goo.gl/YTKPyyLn3hJZ2UeQ7"
+                target="_blank"
+                rel="noreferrer"
+              >
+                📍 Gurugram, Haryana
+              </a>
+            </p>
             <p>🌐 www.oceon.in</p>
           </div>
         </div>
-
         <div className="footerBottom">
-          © {new Date().getFullYear()} OCEON. All Rights Reserved.
+          <span>© {new Date().getFullYear()} OCEON. All rights reserved.</span>
+          <div className="footerLinks">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+          </div>
         </div>
       </footer>
 
-      {/* Floating WhatsApp Button */}
+      {/* ── FLOATING WHATSAPP ── */}
       <a
         href="https://wa.me/919205968389?text=Hi%20OCEON,%20I'm%20interested%20in%20your%20grocery%20products."
         className="floatingWhatsapp"
@@ -447,11 +376,7 @@ export default function Home() {
         rel="noreferrer"
         aria-label="Chat on WhatsApp"
       >
-        <img
-          src="/images/wa.png"
-          alt="WhatsApp"
-          style={{ width: "34px", height: "34px" }}
-        />
+        <img src="/images/wa.png" alt="WhatsApp" />
       </a>
     </div>
   );
