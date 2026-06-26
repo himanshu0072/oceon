@@ -164,7 +164,14 @@ const deleteClient = async (req, res) => {
 // ================= ADD PURCHASE =================
 const addPurchase = async (req, res) => {
   try {
-    const purchase = await Purchase.create(req.body);
+    // Generate unique invoice number
+    const invoiceNumber =
+      "INV-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
+
+    const purchase = await Purchase.create({
+      ...req.body,
+      invoiceNumber,
+    });
 
     res.status(201).json(purchase);
   } catch (err) {
