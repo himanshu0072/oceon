@@ -8,8 +8,16 @@ dotenv.config();
 connectDB();
 
 const app = express();
-
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://oceon.in",
+      "https://www.oceon.in",
+      "http://localhost:3000",
+    ],
+    credentials: true,
+  }),
+);
 app.use(express.json());
 
 app.use("/api/auth", require("./routes/authRoutes"));
