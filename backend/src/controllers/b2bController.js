@@ -1,5 +1,7 @@
 const B2BClient = require("../models/B2BClient");
 const Purchase = require("../models/Purchase");
+const Product = require("../models/Product");
+const Warehouse = require("../models/Warehouse");
 
 // ================= REGISTER CLIENT =================
 const registerClient = async (req, res) => {
@@ -164,14 +166,41 @@ const deleteClient = async (req, res) => {
 // ================= ADD PURCHASE =================
 const addPurchase = async (req, res) => {
   try {
-    // Generate unique invoice number
-    const invoiceNumber =
-      "INV-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
+    const { items } = req.body;
 
-    const purchase = await Purchase.create({
-      ...req.body,
-      invoiceNumber,
-    });
+    // ===== CHECK STOCK =====
+    for (const item of items) {
+      const warehouseItem = await Warehouse.findOne({
+        product: item.product,
+      });
+
+      if (!warehouseItem) {
+        return res.status(400).json({
+          message: "Product not found in warehouse",
+        });
+      }
+
+      if (warehouseItem.currentStock < item.quantity) {
+        return res.status(400).json({
+          message: `Insufficient stock for product. Available: ${warehouseItem.currentStock}`,
+        });
+      }
+    }
+
+    // ===== CREATE PURCHASE =====
+    const purchase = await Purchase.create(req.body);
+
+    // ===== DEDUCT STOCK =====
+    for (const item of items) {
+      await Warehouse.findOneAndUpdate(
+        { product: item.product },
+        {
+          $inc: {
+            currentStock: -Number(item.quantity),
+          },
+        },
+      );
+    }
 
     res.status(201).json(purchase);
   } catch (err) {
@@ -180,7 +209,6 @@ const addPurchase = async (req, res) => {
     });
   }
 };
-
 // ================= GET ALL PURCHASES =================
 const getPurchases = async (req, res) => {
   try {

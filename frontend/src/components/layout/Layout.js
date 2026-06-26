@@ -12,11 +12,7 @@ const NAV_CONFIG = {
     },
     {
       section: "Inventory",
-      items: [
-        { to: "/app/warehouse", icon: "🏭", label: "Warehouse" },
-        { to: "/app/fc", icon: "📦", label: "Fulfillment Center" },
-        { to: "/app/transfers", icon: "⇄", label: "Transfers" },
-      ],
+      items: [{ to: "/app/warehouse", icon: "🏭", label: "Warehouse" }],
     },
     {
       section: "Manage B2B Clients",

@@ -24,8 +24,6 @@ app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/products", require("./routes/productRoutes"));
 app.use("/api/warehouse", require("./routes/warehouseRoutes"));
-app.use("/api/fc", require("./routes/fcRoutes"));
-app.use("/api/transfers", require("./routes/transferRoutes"));
 app.use("/api/sales", require("./routes/salesRoutes"));
 app.use("/api/dashboard", require("./routes/dashboardRoutes"));
 app.use("/api/b2b", b2bRoutes);

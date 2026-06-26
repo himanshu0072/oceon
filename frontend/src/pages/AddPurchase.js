@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 export default function AddPurchase() {
   const [clients, setClients] = useState([]);
   const [products, setProducts] = useState([]);
+  const [warehouseStock, setWarehouseStock] = useState({});
 
   const [selectedClient, setSelectedClient] = useState("");
 
@@ -27,13 +28,25 @@ export default function AddPurchase() {
 
   const fetchData = async () => {
     try {
-      const [clientRes, productRes] = await Promise.all([
+      const [clientRes, productRes, warehouseRes] = await Promise.all([
         api.get("/b2b/clients"),
         api.get("/products"),
+        api.get("/warehouse"),
       ]);
 
       setClients(clientRes.data);
       setProducts(productRes.data);
+
+      // Create stock map
+      const stockMap = {};
+
+      warehouseRes.data.forEach((item) => {
+        if (item.product) {
+          stockMap[item.product._id] = item.currentStock || 0;
+        }
+      });
+
+      setWarehouseStock(stockMap);
     } catch (err) {
       toast.error("Failed to load data");
     }
@@ -56,6 +69,17 @@ export default function AddPurchase() {
 
   const updateItem = (index, field, value) => {
     const updated = [...items];
+
+    // Quantity validation
+    if (field === "quantity") {
+      const stock = warehouseStock[updated[index].product] || 0;
+
+      if (Number(value) > stock) {
+        toast.error(`Only ${stock} units available in warehouse`);
+        return;
+      }
+    }
+
     updated[index][field] = value;
     setItems(updated);
   };
@@ -78,6 +102,15 @@ export default function AddPurchase() {
 
     if (items.some((i) => !i.product || !i.quantity || !i.price)) {
       return toast.error("Fill all product details");
+    }
+
+    // Final stock validation
+    for (let item of items) {
+      const stock = warehouseStock[item.product] || 0;
+
+      if (Number(item.quantity) > stock) {
+        return toast.error(`Insufficient stock. Available: ${stock}`);
+      }
     }
 
     setLoading(true);
@@ -107,6 +140,9 @@ export default function AddPurchase() {
 
       setDiscount(0);
       setPaidAmount(0);
+
+      // refresh stock
+      fetchData();
     } catch (err) {
       toast.error(err.response?.data?.message || "Failed to add purchase");
     }
@@ -117,10 +153,8 @@ export default function AddPurchase() {
   return (
     <div className="container" style={{ padding: 24 }}>
       <div className="page-header">
-        <div>
-          <h1>🛒 Add B2B Purchase</h1>
-          <p>Create wholesale order for client</p>
-        </div>
+        <h1>🛒 Add B2B Purchase</h1>
+        <p>Create wholesale order for client</p>
       </div>
 
       <form onSubmit={handleSubmit}>
@@ -174,6 +208,7 @@ export default function AddPurchase() {
               <thead>
                 <tr>
                   <th>Product</th>
+                  <th>Available Stock</th>
                   <th>Qty</th>
                   <th>Price</th>
                   <th>Total</th>
@@ -182,71 +217,93 @@ export default function AddPurchase() {
               </thead>
 
               <tbody>
-                {items.map((item, index) => (
-                  <tr key={index}>
-                    <td>
-                      <select
-                        className="form-input"
-                        value={item.product}
-                        onChange={(e) =>
-                          updateItem(index, "product", e.target.value)
-                        }
-                        required
-                      >
-                        <option value="">Select Product</option>
+                {items.map((item, index) => {
+                  const stock = warehouseStock[item.product] || 0;
 
-                        {products.map((p) => (
-                          <option key={p._id} value={p._id}>
-                            {p.name}
-                          </option>
-                        ))}
-                      </select>
-                    </td>
-
-                    <td>
-                      <input
-                        className="form-input"
-                        type="number"
-                        min="1"
-                        value={item.quantity}
-                        onChange={(e) =>
-                          updateItem(index, "quantity", e.target.value)
-                        }
-                      />
-                    </td>
-
-                    <td>
-                      <input
-                        className="form-input"
-                        type="number"
-                        min="0"
-                        value={item.price}
-                        onChange={(e) =>
-                          updateItem(index, "price", e.target.value)
-                        }
-                      />
-                    </td>
-
-                    <td>
-                      ₹
-                      {(
-                        Number(item.quantity || 0) * Number(item.price || 0)
-                      ).toLocaleString("en-IN")}
-                    </td>
-
-                    <td>
-                      {items.length > 1 && (
-                        <button
-                          type="button"
-                          className="btn btn-danger"
-                          onClick={() => removeRow(index)}
+                  return (
+                    <tr key={index}>
+                      <td>
+                        <select
+                          className="form-input"
+                          value={item.product}
+                          onChange={(e) =>
+                            updateItem(index, "product", e.target.value)
+                          }
+                          required
                         >
-                          ✕
-                        </button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
+                          <option value="">Select Product</option>
+
+                          {products.map((p) => (
+                            <option key={p._id} value={p._id}>
+                              {p.name} (Stock: {warehouseStock[p._id] || 0})
+                            </option>
+                          ))}
+                        </select>
+                      </td>
+
+                      <td>
+                        <span
+                          style={{
+                            color: stock > 0 ? "var(--green)" : "var(--red)",
+                            fontWeight: 700,
+                          }}
+                        >
+                          {stock}
+                        </span>
+                      </td>
+
+                      <td>
+                        <input
+                          className="form-input"
+                          type="number"
+                          min="1"
+                          max={stock}
+                          value={item.quantity}
+                          onChange={(e) =>
+                            updateItem(index, "quantity", e.target.value)
+                          }
+                        />
+
+                        {Number(item.quantity) > stock && (
+                          <small style={{ color: "red" }}>
+                            Stock not available
+                          </small>
+                        )}
+                      </td>
+
+                      <td>
+                        <input
+                          className="form-input"
+                          type="number"
+                          min="0"
+                          value={item.price}
+                          onChange={(e) =>
+                            updateItem(index, "price", e.target.value)
+                          }
+                        />
+                      </td>
+
+                      <td>
+                        ₹
+                        {(
+                          Number(item.quantity || 0) * Number(item.price || 0)
+                        ).toLocaleString("en-IN")}
+                      </td>
+
+                      <td>
+                        {items.length > 1 && (
+                          <button
+                            type="button"
+                            className="btn btn-danger"
+                            onClick={() => removeRow(index)}
+                          >
+                            ✕
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -297,7 +354,6 @@ export default function AddPurchase() {
           >
             <div className="stat-card">
               <div className="stat-label">Subtotal</div>
-
               <div className="stat-value">
                 ₹{subtotal.toLocaleString("en-IN")}
               </div>
@@ -305,7 +361,6 @@ export default function AddPurchase() {
 
             <div className="stat-card">
               <div className="stat-label">Discount</div>
-
               <div className="stat-value">₹{discount}</div>
             </div>
 

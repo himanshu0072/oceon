@@ -6,14 +6,14 @@ import Layout from "./components/layout/Layout";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Warehouse from "./pages/Warehouse";
-import FCPage from "./pages/FCPage";
+// import FCPage from "./pages/FCPage";
 import Transfers from "./pages/Transfers";
 import Sales from "./pages/Sales";
 import Products from "./pages/Products";
 import Users from "./pages/Users";
 import SalespersonHome from "./pages/SalespersonHome";
 import WarehouseHome from "./pages/WarehouseHome";
-import FCHome from "./pages/FCHome";
+// import FCHome from "./pages/FCHome";
 import Unauthorized from "./pages/Unauthorized";
 import Home from "./pages/Home";
 import ManageClients from "./pages/ManageClients";
@@ -69,9 +69,6 @@ const RoleHome = () => {
 
     case "warehouse_manager":
       return <WarehouseHome />;
-
-    case "fc_manager":
-      return <FCHome />;
 
     case "salesperson":
       return <SalespersonHome />;
@@ -232,23 +229,6 @@ export default function App() {
               element={
                 <PrivateRoute roles={["admin", "warehouse_manager"]}>
                   <Warehouse />
-                </PrivateRoute>
-              }
-            />
-
-            {/* Admin + FC + Salesperson + Warehouse */}
-            <Route
-              path="fc"
-              element={
-                <PrivateRoute
-                  roles={[
-                    "admin",
-                    "fc_manager",
-                    "salesperson",
-                    "warehouse_manager",
-                  ]}
-                >
-                  <FCPage />
                 </PrivateRoute>
               }
             />
