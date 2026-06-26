@@ -50,10 +50,7 @@ const NAV_CONFIG = {
     },
     {
       section: "Operations",
-      items: [
-        { to: "/app/sales", icon: "₹", label: "Sales" },
-        { to: "/app/products", icon: "◈", label: "Products" },
-      ],
+      items: [{ to: "/app/products", icon: "◈", label: "Products" }],
     },
     {
       section: "Admin",
