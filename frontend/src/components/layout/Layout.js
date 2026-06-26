@@ -19,6 +19,40 @@ const NAV_CONFIG = {
       ],
     },
     {
+      section: "Manage B2B Clients",
+      items: [
+        {
+          to: "/app/manageclients",
+          icon: "📝",
+          label: "Register Client",
+        },
+
+        {
+          to: "/app/searchclients",
+          icon: "🔍",
+          label: "Search Clients",
+        },
+
+        {
+          to: "/app/addpurchase",
+          icon: "🛒",
+          label: "Add Purchase",
+        },
+
+        {
+          to: "/app/purchasehistory",
+          icon: "📦",
+          label: "Purchase History",
+        },
+
+        {
+          to: "/app/totalclientsdashboard",
+          icon: "📊",
+          label: "Clients Dashboard",
+        },
+      ],
+    },
+    {
       section: "Operations",
       items: [
         { to: "/app/sales", icon: "₹", label: "Sales" },
@@ -40,7 +74,7 @@ const NAV_CONFIG = {
     },
     {
       section: "View Only",
-      items: [{ to: "/fc", icon: "📦", label: "FC Stock" }],
+      items: [{ to: "/app/fc", icon: "📦", label: "FC Stock" }],
     },
   ],
   fc_manager: [

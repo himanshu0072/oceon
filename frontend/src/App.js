@@ -16,6 +16,12 @@ import WarehouseHome from "./pages/WarehouseHome";
 import FCHome from "./pages/FCHome";
 import Unauthorized from "./pages/Unauthorized";
 import Home from "./pages/Home";
+import ManageClients from "./pages/ManageClients";
+import SearchClients from "./pages/SearchClients";
+import ClientProfile from "./pages/ClientProfile";
+import AddPurchase from "./pages/AddPurchase";
+import PurchaseHistory from "./pages/PurchaseHistory";
+import TotalClientsDashboard from "./pages/TotalClientsDashboard";
 
 // Role → default landing page
 const ROLE_HOME = {
@@ -145,6 +151,77 @@ export default function App() {
               element={
                 <PrivateRoute roles={["admin"]}>
                   <Products />
+                </PrivateRoute>
+              }
+            />
+
+            {/* manage clients routes */}
+            <Route
+              path="manageclients"
+              element={
+                <PrivateRoute
+                  roles={["admin", "warehouse_manager", "fc_manager"]}
+                >
+                  <ManageClients />
+                </PrivateRoute>
+              }
+            />
+            {/* search client route */}
+            <Route
+              path="searchclients"
+              element={
+                <PrivateRoute
+                  roles={["admin", "warehouse_manager", "fc_manager"]}
+                >
+                  <SearchClients />
+                </PrivateRoute>
+              }
+            />
+
+            {/* client search and profile routes */}
+            <Route
+              path="client/:id"
+              element={
+                <PrivateRoute
+                  roles={["admin", "warehouse_manager", "fc_manager"]}
+                >
+                  <ClientProfile />
+                </PrivateRoute>
+              }
+            />
+
+            {/* item purchase routes */}
+
+            <Route
+              path="addpurchase"
+              element={
+                <PrivateRoute
+                  roles={["admin", "warehouse_manager", "fc_manager"]}
+                >
+                  <AddPurchase />
+                </PrivateRoute>
+              }
+            />
+
+            {/* purchase history route */}
+            <Route
+              path="purchasehistory"
+              element={
+                <PrivateRoute
+                  roles={["admin", "warehouse_manager", "fc_manager"]}
+                >
+                  <PurchaseHistory />
+                </PrivateRoute>
+              }
+            />
+            {/* total clients dashboard route */}
+            <Route
+              path="totalclientsdashboard"
+              element={
+                <PrivateRoute
+                  roles={["admin", "warehouse_manager", "fc_manager"]}
+                >
+                  <TotalClientsDashboard />
                 </PrivateRoute>
               }
             />
