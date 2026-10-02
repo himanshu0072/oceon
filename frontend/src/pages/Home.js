@@ -78,7 +78,7 @@ export default function Home() {
             target="_blank"
             rel="noreferrer"
           >
-            Order now ↗
+            Order now
           </a>
         </div>
         <a
@@ -87,7 +87,7 @@ export default function Home() {
           target="_blank"
           rel="noreferrer"
         >
-          Order ↗
+          Order
         </a>
       </nav>
 
@@ -116,10 +116,10 @@ export default function Home() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Order on WhatsApp ↗
+                Order on WhatsApp
               </a>
               <a href="#categories" className="btnGhost">
-                Browse products →
+                Browse products
               </a>
             </div>
             <div className="heroTrust">
@@ -179,7 +179,7 @@ export default function Home() {
                   rel="noreferrer"
                   className="productEnquiry"
                 >
-                  Enquire →
+                  Enquire
                 </a>
               </div>
             </div>
@@ -320,7 +320,7 @@ export default function Home() {
             rel="noreferrer"
             className="ctaBtn"
           >
-            Order on WhatsApp →
+            Order on WhatsApp
           </a>
         </div>
       </section>
