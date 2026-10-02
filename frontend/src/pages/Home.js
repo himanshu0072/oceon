@@ -777,7 +777,7 @@ export default function Home() {
         <div className="footerTop">
           <div className="footerBrand">
             <div className="footerLogo">
-              <img src="/logo.png" alt="OCEON" />
+              <img src="/logo.png" alt="OCEON" style={{ height: "50px" }} />
 
               <p>
                 Premium Grocery Store serving Gurugram with quality products and
