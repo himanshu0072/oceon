@@ -361,6 +361,18 @@ export default function Home() {
         </div>
         <div className="footerBottom">
           <span>© {new Date().getFullYear()} OCEON. All rights reserved.</span>
+          <span>
+            {" "}
+            Developed and managed by{" "}
+            <a
+              href="https://himanshukaportfolio.vercel.app/"
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: "#7eb3ff" }}
+            >
+              Himanshu Development Group pvt. ltd.
+            </a>
+          </span>
           <div className="footerLinks">
             <a href="#">Privacy</a>
             <a href="#">Terms</a>
